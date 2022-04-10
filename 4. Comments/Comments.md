@@ -1,0 +1,3 @@
+# Comments
+
+In Stensl, Comments are blocks of text which are not read by the interpreter. These may be used to add notes to Stensl code or for debugging purposes. In Stensl, there are two kinds of comments: inline comments and block comments. Inline comments are denoted by `//`. This token may create a comment anywhere, except inside a string literal. Any text between the `//` token and the end of the line will not be read. The second kind of comment is the block comment, and is opened by `/*` and closed by `*/`. These tokens may create a comment anywhere, again except inside a string literal. Any text between these two tokens will not be read, regardless of whether they are on the same line or different lines.

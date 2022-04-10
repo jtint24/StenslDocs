@@ -1,0 +1,82 @@
+# Expressions
+
+An expression is a construct that represents a value. An expression must contain at least one value, but may also contain operators and functions. Because expressions represent values, expressions may also contain expressions. Expressions are resolved into values at runtime as needed. 
+
+For instance, the following are all expressions:
+
+
+
+* `2+2`
+* `"Hello there"`
+* `"Message string"$(4+5)`
+
+Expressions are evaluated from left to right, using a relatively standard order of operations defined below. Precedence levels are listed from highest to lowest order.
+
+
+<table>
+  <tr>
+   <td><strong>Precedence level</strong>
+   </td>
+   <td><strong>Purpose</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Functional
+   </td>
+   <td>Level used for all user-defined and built-in functions
+   </td>
+  </tr>
+  <tr>
+   <td>Exponential
+   </td>
+   <td>Level reserved for exponentiation in a future version
+   </td>
+  </tr>
+  <tr>
+   <td>Multiplicative
+   </td>
+   <td>Level used for operations related to multiplication
+   </td>
+  </tr>
+  <tr>
+   <td>Addititve
+   </td>
+   <td>Level used for operations related to addition
+   </td>
+  </tr>
+  <tr>
+   <td>Comparative
+   </td>
+   <td>Level used for comparative operators
+   </td>
+  </tr>
+  <tr>
+   <td>Negative
+   </td>
+   <td>Level used for logical negation
+   </td>
+  </tr>
+  <tr>
+   <td>Conjunctive
+   </td>
+   <td>Level used for logical conjunction
+   </td>
+  </tr>
+  <tr>
+   <td>Disjunctive
+   </td>
+   <td>Level used for logical disjunction
+   </td>
+  </tr>
+  <tr>
+   <td>Pass
+   </td>
+   <td>Level used for identity operations
+   </td>
+  </tr>
+</table>
+
+
+ \
+Expressions within parentheses are evaluated first regardless of operation, thus parentheses can be used to construct expressions which apply operations in an arbitrary order. In parsing expressions, spaces will be ignored except in the case of spaces inside of string literals.
+

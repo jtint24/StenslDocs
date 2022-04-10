@@ -1,0 +1,146 @@
+## Declaration Statements
+
+Declaration statements are a particular type of statements that introduce new constructs into the program. There are currently three kinds of declarations: var, func, and class.
+
+
+### Var Declaration and Variables
+
+The grammar of the var statement is:
+
+
+```
+<var declaration> ::= var [const] [<type>] <non-type identifier> = <expression>
+```
+
+
+Where the expression resolves to a value of a type compatible with the first type provided (if it is provided). The var statement declares a variable whose name is the provided non-type identifier. The var statement initializes this variable with the result of the expression provided on the right. The type of the variable will match the type provided. If no type is provided, then the variable’s type will be inferred from the type of the result of the expression. If the “const” keyword is used, then modification of the variable will be forbidden. Any attempt to modify a variable declared with the const keyword will throw an error. Additionally, if a variable with a certain name is declared when a variable with that name already exists in scope, an error will be thrown.
+
+Examples of valid var declarations are below:
+
+
+```
+var myInt = 2 //This will be of type int
+var float myFloat = 2 //This will be of type float
+var const string myString = str(myFloat)&" is the value of myFloat"
+```
+
+
+In Stensl, variables are statically typed, meaning that their types cannot be changed after initialization with var. The location of the var statement also determines the scope of the variable: if the var statement is inside of a statement block then the variable can only be accessed or modified from within that block. 
+
+
+### Func Declaration and Functions
+
+The grammar of the func statement is:
+
+
+```
+<func declaration> ::= func <type> <non-type identifier>([<parameter list>]) <statement block>
+<parameter list> ::= <parameter> | <parameter>, <parameter list> 
+<parameter> ::= <type> <non-type identifier>
+```
+
+
+Where the statement block in the function declaration takes no variables. The func statement declares a new function. This function has the return type of the first type provided and is named for the first non-type identifier. This is followed by parentheses inside of which goes the parameter list, which is a parenthesized list of each parameter’s type followed by its name. If there are no parameters, this is omitted. Following this is the statement block that defines the function’s behavior. If another function with the same name and parameter types has already been declared, an error will be thrown. If the statement block ever terminates without encountering a return statement, an error will be thrown. More information on this can be found in the section on the return statement. 
+
+Below are several valid examples of the func declaration:
+
+
+```
+func void simpleFunc() {
+	return
+}
+func int double(int x) {
+	return 2*x
+}
+func (int)->int myFunc(string s, int x) {
+	println(s+str(x))
+	return double
+}
+```
+
+
+This function declaration puts this function into memory, similar to how a variable declaration puts a variable into memory. Functions are first-class citizens in Stensl, so a function could also be initialized by assigning a function to a variable with the var keyword. However, the func statement still has some special properties that differentiate it from var. For instance, func keywords are read before a Stensl script is run, meaning that functions declared with func can be used from anywhere inside the scope of the func declaration. This is to allow mutually recursive functions and to give programmers more leeway over the organization of their programs. This contrasts with variables declared with var, which can only be used after the initialization statement has been run in code. Additionally, functions declared with func are always immutable. Apart from this, most functions declared with func are first-class and thus can be used like variables in practically any context: they may be placed in expressions, put inside arrays, passed to other functions, et cetera. This is done by referencing the function’s name, the same as a variable. However, if two functions share the same name, then neither may be used in a first-class context to prevent ambiguity.
+
+
+### Class Declaration and Classes
+
+The grammar of the class statement is:
+
+
+```
+<class declaration> ::= class <non-type identifier> {<class body>}
+<class body> ::= <class var declaration> [<class body>] | <class func declaration> [<class body>]
+<class var declaration> ::= var [<scope>] [const] <type> <non-type identifier> [= <expression>]
+<class func declaration>  ::= func [<scope>] <type> <non-type identifier>([<parameter list>])
+<scope> ::= <custom scope> | public | private
+<custom scope> ::= <class name>,<custom scope> | <class name>
+```
+
+
+Where the class var declaration and class func declaration generally follow the conventions of the standard var and func declarations. The only exceptions are the optional scope flag, the fact that the type of the var declaration is required, and that the assigned expression is optional on the var declaration. The class declaration introduces a new class to the Stensl program. Classes define a new type with several properties that can be defined by the user. The class body contains one or more declarations of variables or functions. Properties which are functions are also called “methods.” Any object that is created with the class as its type will have instances of these variables and functions which can be used by the programmer to create well-organized, efficient, and high-reusability code. 
+
+Variables declared inside classes are similar to standard variables, but must have their types explicitly declared to promote readable code. Additionally, they may be declared without being assigned to, unless  they are declared as constant. This is because constant variables cannot be modified, so if a constant was declared and not initialized, it would remain empty for the rest of the program. Both variables and functions that are declared within classes also may have an optional scope flag. This defines where the property may be accessed and modified. If the “public” scope flag is used, then the property may be accessed and modified from anywhere. If the “private” scope flag is used, then the property may only be accessed and modified from within the class where it is declared. Otherwise, a custom scope flag may be used, which takes the form of a comma-separated list of classes from which the property may be accessed and modified from. The custom scope should be a single token and thus should not contain spaces. If no scope flag is given, the property will be implicitly made public. Trying to access a property from outside of its scope will throw an error.
+
+Examples of valid class declarations are below:
+
+
+```
+class Vehicle {
+	var int numberOfWheels = 0
+	var Person,Vehicle string name
+	func int numberOfAxles() {
+	return numberOfWheels/2
+    }
+}
+class Person {
+	var private string name
+	func public string getName() {
+		return name
+}
+}
+```
+
+
+Once a class has been declared, an object may be instantiated from that class with its constructor. The constructor is an implicitly defined global function that takes no arguments  and returns a blank version of the class, with all of the declared properties. If properties have had a value set inside of their class declaration, then the property of a newly instantiated object will have that value. Otherwise, the property will be blank. The name of the constructor is the same as the name of the class. Because constructors share their name with a class, they may not be used in a first-class context. 
+
+Given the class declarations above, here are two examples of proper object instantiation
+
+
+```
+var myVehicle = Vehicle()
+var Person myPerson = Person()
+```
+
+
+Once an object has been instantiated, properties can be accessed from it by using dot notation, placing a dot after the name of the object then following that with the name of the property. This can be used for either variables or functions.
+
+Given the object instantiations above, here are examples of property access and modification:
+
+
+```
+myVehicle.numberOfWheels = 4
+println(myVehicle.numberOfWheels) //prints "4"
+println(myVehicle.numberOfAxles()) //prints "2"
+```
+
+
+
+#### This
+
+All classes also have a special property called `this` which for each object instantiated from that class references the object itself. The `this` property is always private and immutable, which means that `this` cannot be assigned to and cannot be accessed externally. This helps eliminate confusion between names, as properties of the class can be referenced with the `this` prefix (such as “`this.property`”) if there is reason for confusion between the property and a similarly-named variable. It also allows the object to easily perform self-referential computations. For instance, take the following example of a method in a class:
+
+
+```
+class Copyable {
+	var int value1 = 0
+	var bool value2 = false
+	var float value3
+	func Copyable copy() {
+	return this
+    }
+}
+```
+
+
+Were it not for the `this` property, one would have to instantiate a new object from `Copyable` and mutate its properties manually until it matched the original instance. The method shown above, using `this`, is clearly much simpler.
+

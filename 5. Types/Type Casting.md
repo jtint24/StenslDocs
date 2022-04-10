@@ -1,0 +1,3 @@
+## Type Casting
+
+Type casting is the process of converting a value of one type into a value of another type automatically. Generally, Stensl will automatically cast ints into floats, chars into strings, and all types to any when such a conversion is required. However, this casting will not occur with passing arguments to user-defined functions. For instance, a user-defined function which takes a float will not accept an int. This is because functions are identified by the types of their arguments as well as their name, so changing the types of a user-defined function changes its identity. Type casting can be performed inside composite types, for instance, [int] can be casted to [float] and (bool)->char can be casted to (any)->string.

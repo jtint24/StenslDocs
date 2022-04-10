@@ -1,0 +1,91 @@
+## Non-declaration Statements
+
+
+### Assignment Statement
+
+The grammar of the assignment statement is:
+
+
+```
+<assignment statement> ::= <identifier>=<expression>
+```
+
+
+Where the identifier is the name of some element in the memory, such as the name of a function or variable. The assignment statement sets the value of the provided expression to the value of the memory element referenced by the identifier to the left of the equals sign. Because of this, the type of the result of the expression must be compatible with the type of the memory element. Additionally, the memory element must not be a constant as constants may not be mutated. Trying to mutate a constant will result in an error.
+
+
+### If Statement
+
+The grammar of the if statement is: 
+
+
+```
+<if statement> ::= if <expression> <statement block> [else <statement block>]
+```
+
+
+The if statement evaluates its first expression, then runs its first statement block if the expression evaluates to true. If the expression does not evaluate to a boolean, then an error is thrown. Optionally, an “else” keyword may be appended with a statement block. This second statement block will run if the expression evaluates to false. Both of these statement blocks may not declare any variables.
+
+Examples of if statement usages are below:
+
+
+```
+if "hello"=="hello" {
+	//This will run
+}
+if 1==2 {
+	//This will not run
+} else {
+	//This will run
+}
+if 56.7 { //This will throw an error
+
+
+}
+```
+
+
+
+### For Statement
+
+The grammar of the for statement is:
+
+
+```
+<for statement> ::= for <expression>,<expression> <code block>
+```
+
+
+Where the attached expressions evaluate to integers and the attached code block takes an int or a float and no other variables. The for statement will run this code block with its attached variable equal to the result of the code block’s first expression, then run it again with the variable equal to the result of the code block’s first expression plus one, repeating this until the variable is equal to the result of the second expression. Note that the for statement is inclusive of the result of the second expression, so the code block will run with the result of the second expression as the value of its variable. 
+
+Examples of the for statement are attached below:
+
+
+```
+for 1,5 {(int i)
+	//This will run 5 times
+}
+for 10,100 {(float i)
+	//This will run 91 times
+}
+```
+
+
+
+### Return Statement
+
+The grammar for the return statement is:
+
+`&lt;return statement> ::= return [&lt;expression>]` \
+
+
+The return statement exits a statement block that’s attached to a function. The expression attached, if there is one, resolves to the value which is returned by the function. Thus, the expression must be included if the function is non-void, and it must resolve to a value which is compatible with the type of the function return type. No statement block attached to a function can terminate without encountering a return statement, otherwise an error will be thrown.
+
+
+### Stop Statement
+
+The stop statement is simply called with the keyword, `stop`
+
+The stop statement ends the execution of the program when it is encountered. No exit or stop message is printed when this statement is run. For cases where execution should be ended because of an error, use the throw function instead.
+
+
