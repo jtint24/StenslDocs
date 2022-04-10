@@ -1,0 +1,11 @@
+# Stensl’s Philosophy
+
+Stensl’s credo is the following:
+
+_Write Fast, Revise Faster, Read Fastest_
+
+Which is to say that Stensl prioritizes the ability to quickly draft powerful code, but above that prioritizes the ability to quickly and easily adapt code, but above that prioritizes code which is organized, clean, and fast to understand. The result is that Stensl upholds the basic principles of a scripting language: simple, clean, fast code that is oriented around making the programmer’s life easier, both for the programmers writing the code and the ones who read or maintain the code.
+
+To support this credo, Stensl draws on several paradigms of programming in order to give the programmer a variety of tools to approach problems. Stensl incorporates elements from procedural, functional, object-oriented, and declarative programming paradigms without leaning too heavily into their arcana and baggage. The intended result is that Stensl code is eclectic, where programmers can combine the best techniques from across domains, and to adapt easily to problems that are most easily solved by a particular paradigm. This helps programmers “write fast,” as well as supporting modularity of different principles to solve problems, upholding “revise faster.” 
+
+Stensl’s syntax is also designed to be lightweight and expressive, making it fast to write in and easy to read. Syntax is built to avoid special characters that are clumsier to write and can be hard to read, instead building instructions with alphanumeric characters and spaces as delimiters wherever possible. Stensl enforces standard best practices for formatting, such as only allowing one instruction per line and regulating where opening and closing braces may be placed. However, Stensl does not have significant whitespace to avoid compatibility problems between text editors. While these rules may seem strict to some, they merely enforce the structure that most programs already follow, so interference from these restrictions is rare. Stensl’s syntax also allows for arbitrary insertion of block comments and liberal insertion of spaces within lines, allowing for detailed annotation and formatting to promote maximum readability.
