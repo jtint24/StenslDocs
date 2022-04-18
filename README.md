@@ -7,7 +7,9 @@ This repo contains the documentation for the Stensl Language, currently in versi
 ## Contents of the Stensl Docs
 
 1. [Stensl's Philosophy](https://github.com/jtint24/StenslDocs/blob/main/1.%20Stensl's%20Philosophy/1.%20Philosophy.md)
-2. [Notes on a1.0.0](https://github.com/jtint24/StenslDocs/blob/main/2.%20Notes%20on%20a1.0.0/1.%20Notes%20on%20a1.0.0.md)
+2. [Notes on a1.1.0](https://github.com/jtint24/StenslDocs/tree/main/2.%20Notes%20on%20a1.1.0)
+   1. [Notes on a1.1.0](https://github.com/jtint24/StenslDocs/blob/main/2.%20Notes%20on%20a1.1.0/1.%20Notes%20on%20a1.1.0.md)
+   2. [Changes from a1.0.0](https://github.com/jtint24/StenslDocs/blob/main/2.%20Notes%20on%20a1.1.0/2.%20Changes%20from%20a1.0.0.md)
 3. [Stensl Lexicon](https://github.com/jtint24/StenslDocs/tree/main/3.%20Stensl%20Lexicon)
    1. [Syntax Notation](https://github.com/jtint24/StenslDocs/blob/main/3.%20Stensl%20Lexicon/1.%20Syntax%20Notation.md)
    2. [Standard Identifiers](https://github.com/jtint24/StenslDocs/blob/main/3.%20Stensl%20Lexicon/2.%20Standard%20Identifiers.md)
